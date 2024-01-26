@@ -290,6 +290,11 @@ class Counter(MetricWrapperBase):
                                         self._labelvalues, self._documentation)
         self._created = time.time()
 
+    def reset(self) -> None:
+        """Reset the counter and the created time."""
+        self._value.set(value=0.0)
+        self._created = time.time()
+
     def inc(self, amount: float = 1, exemplar: Optional[Dict[str, str]] = None) -> None:
         """Increment counter by the given amount."""
         self._raise_if_not_observable()
